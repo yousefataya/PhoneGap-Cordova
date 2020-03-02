@@ -1,0 +1,184 @@
+<style type="text/css">
+    .register-table {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+        .register-table td,
+        .register-table tr {
+            margin: 0px;
+            padding: 2px;
+            border-spacing: 0px;
+            border-collapse: collapse;
+            font-family: Verdana;
+            font-size: 12px;
+        }
+
+    h3 {
+        display: inline-block;
+        margin: 0px;
+    }
+</style>
+
+<div class="page-wrapper">
+    <div class="page-inner">
+
+
+
+        <script>
+
+            'use strict';
+
+            var classHolder = document.getElementsByTagName("BODY")[0],
+
+                themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                    {},
+                themeURL = themeSettings.themeURL || '',
+                themeOptions = themeSettings.themeOptions || '';
+
+            if (themeSettings.themeOptions) {
+                classHolder.className = themeSettings.themeOptions;
+                console.log("%c✔ Theme settings loaded", "color: #148f32");
+            }
+            else {
+                console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+            }
+            if (themeSettings.themeURL && !document.getElementById('mytheme')) {
+                var cssfile = document.createElement('link');
+                cssfile.id = 'mytheme';
+                cssfile.rel = 'stylesheet';
+                cssfile.href = themeURL;
+                document.getElementsByTagName('head')[0].appendChild(cssfile);
+            }
+
+            var saveSettings = function () {
+                themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function (item) {
+                    return /^(nav|header|mod|display)-/i.test(item);
+                }).join(' ');
+                if (document.getElementById('mytheme')) {
+                    themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+                };
+                localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            }
+
+            var resetSettings = function () {
+                localStorage.setItem("themeSettings", "");
+            }
+
+            //var resetSettings = function () {
+            //    window.addEventListener('load', function(){
+            //        var forms = document.getElementsByClassName('needs-validation');
+            //        var validation = Array.prototype.filter.call(forms, function (form) {
+            //            form.addEventListener('submit', function (event) {
+            //                if (form.checkValidity() === false) {
+            //                    event.preventDefault();
+            //                    event.stopPropagation();
+            //                }
+            //                form.classList.add('was-validated');
+            //            }, false);
+            //        });
+            //}, false);
+            //}
+        </script>
+        <script>
+            function validate() {
+                alert('Hello World');
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }
+
+        </script>
+        <div class="vertical">
+
+
+            <jqxTree #treeReference (click)="onCheckChange()" [height]="260" [width]="150" [source]="treeSource"></jqxTree>
+
+        </div>
+        <div class="page-content-wrapper">
+            <main id="js-page-content" role="main" class="page-content">
+                <jqxMenu #menuReference [width]="getWidth()" [height]="30">
+                    <ul>
+
+                        <li style="width:50px;">
+                            Featuers
+                            <ul style="width: 250px;">
+                                <li><a href="#Education">Profile</a></li>
+                                <li><a href="#Financial">Financial services</a></li>
+                                <li><a href="#Government">Email</a></li>
+                                <li><a href="#Manufacturing">Manufacturing</a></li>
+                                <li type="separator"></li>
+
+                            </ul>
+                        </li>
+                        <li style="width:50px;">
+                            Settings
+                            <ul>
+                                <li><a href="#PCProducts">Email Server</a></li>
+                                <li><a href="#MobileProducts">Data Science</a></li>
+                                <li><a href="#AllProducts">Conference</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </jqxMenu>
+
+
+
+                <div style="border-radius:50px;width:20%;height:20%;align-content:center;vertical-align:central">
+
+                    <img src="assets/img/camera.jpeg" width="150" height="150" />
+
+                </div>
+
+                
+                
+                
+                <br />
+                <br />
+
+                <div  style="border-radius:50px;width:20%;height:20%;align-content:center;vertical-align:central;padding-left:30px">
+
+                    <img src="assets/img/call.png" width="80" height="80" />
+
+                </div>
+
+                
+              
+                <br />
+                <br />
+
+                <div  style="border-radius:50px;width:20%;height:20%;align-content:center;vertical-align:central;padding-left:30px">
+
+                    <img src="assets/img/facebook.png" width="60" height="60" />
+
+                </div>
+            </main>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var controls = {
+        leftArrow: '<i class="fal fa-angle-left" style="font-size: 1.25rem"></i>',
+        rightArrow: '<i class="fal fa-angle-right" style="font-size: 1.25rem"></i>'
+    }
+
+    var runDatePicker = function () {
+        $('#datepicker-1').datepicker(
+            {
+                todayHighlight: true,
+                orientation: "bottom left",
+                templates: controls
+            });
+    }
+</script>
